@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Page title</title>
+</head>
+<body>
+ <h3>Hello</h3>
+ <h3 id="name"></h3>
+  <h3 id="email"></h3>
+ <img src="" alt="" id="pic">
+ 
+ <script type="module">
+   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+  
+import { getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";    
+ 
+  const firebaseConfig = {
+    apiKey: "AIzaSyD8PRvkK0ZJAlbjaeykQgWhKHQFH5y2Xj8",
+    authDomain: "chatme-fc2d7.firebaseapp.com",
+    projectId: "chatme-fc2d7",
+    storageBucket: "chatme-fc2d7.appspot.com",
+    messagingSenderId: "941365215170",
+    appId: "1:941365215170:web:e42865112b4c78ae68a05b"
+  };
+
+ const app = initializeApp(firebaseConfig); 
+ const auth = getAuth(app);
+
+
+
+onAuthStateChanged(auth, (user)=>{
+
+ if(user){
+const userName = user.displayName;
+const userEmail = user.email;
+const userPic = user.photoURL; 
+alert(userPic)
+document.querySelector("#name").textContent=userName; 
+document.querySelector("#email").textContent=userEmail; 
+document.querySelector("#pic").src=userPic; 
+
+ }
+ else{
+  alert("Please Login First")
+   
+ }
+})
+ </script>
+</body>
+</html>
